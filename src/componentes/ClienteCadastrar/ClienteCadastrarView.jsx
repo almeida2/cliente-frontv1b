@@ -67,11 +67,11 @@ const ClienteCadastrarView = ({
             <label className="form-label">Cidade</label>
             <input className="form-input" value={cidade} disabled />
           </div>
-        </div>
 
-        <div className="form-row full">
-          <label className="form-label">Complemento</label>
-          <input className="form-input" value={complemento} onChange={e => setComplemento(e.target.value)} placeholder="Apto, Bloco, etc." />
+          <div className="form-row">
+            <label className="form-label">Complemento</label>
+            <input className="form-input" value={complemento} onChange={e => setComplemento(e.target.value)} placeholder="Apto, Bloco, etc." />
+          </div>
         </div>
 
         <div className="button-group form-grid-full-width">
