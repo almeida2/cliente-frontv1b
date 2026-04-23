@@ -1,13 +1,12 @@
-const API_BASE = "https://cliente-backv2-a51a1eaa05cd.herokuapp.com/api/v1";
+const API_BASE = "http://localhost:8080/api/v1";
 
 const ClienteConsultaCpfService = {
   consultarPorCpf: async (cpf) => {
     try {
-      const payload = { cpf, nome: "", cep: "", email: "" };
-      const res = await fetch(`${API_BASE}/clientes/cpf`, {
-        method: "POST",
+      const res = await fetch(`${API_BASE}/clientes/${cpf}`, {
+        method: "GET",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+
       });
 
       const json = await res.json().catch(() => null);

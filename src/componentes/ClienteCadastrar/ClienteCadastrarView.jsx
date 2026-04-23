@@ -1,28 +1,13 @@
-// Componente de visualização
 import React from "react";
 import "./styles.css";
 import ClienteService from "./ClienteService";
+
 const ClienteCadastrarView = ({
-  cpf,
-  nome,
-  cep,
-  endereco,
-  bairro,
-  cidade,
-  complemento,
-  email,
-  setCpf,
-  setNome,
-  setCep,
-  setEndereco,
-  setBairro,
-  setCidade,
-  setComplemento,
-  setEmail,
-  handleSubmit,
-  handleVoltar,
-  mensagem,
+  cpf, nome, cep, endereco, bairro, cidade, complemento, email,
+  setCpf, setNome, setCep, setEndereco, setBairro, setCidade, setComplemento, setEmail,
+  handleSubmit, handleVoltar, mensagem,
 }) => {
+
   const handleCepBlur = async (e) => {
     const cepValue = e.target.value.replace(/\D/g, '');
 
@@ -34,7 +19,6 @@ const ClienteCadastrarView = ({
           setEndereco(response.data.logradouro || '');
           setBairro(response.data.bairro || '');
           setCidade(response.data.cidade || '');
-
         }
       } catch (error) {
         console.error('Erro ao buscar CEP:', error);
@@ -44,150 +28,69 @@ const ClienteCadastrarView = ({
 
   return (
     <div className="cliente-cadastrar-view">
-      <div className="top-bar">Sistema Integrado de Gestão</div>
-      <h3 className="title-cadastrar-view">Cadastrar Clientes</h3>
+      <h2 className="title">Cadastrar Cliente</h2>
 
-      <div className="form-container">
-        <form onSubmit={handleSubmit} className="form-grid">
-          <div className="form-row">
-            <label className="form-label" htmlFor="cpf">CPF</label>
-            <input
-              className="form-input"
-              id="cpf"
-              name="cpf"
-              data-testid="cpf"
-              type="text"
-              placeholder="000.000.000-00"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="form-grid">
 
+        <div className="form-row">
+          <label className="form-label">CPF</label>
+          <input className="form-input" value={cpf} onChange={e => setCpf(e.target.value)} placeholder="000.000.000-00" required />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">Nome Completo</label>
+          <input className="form-input" value={nome} onChange={e => setNome(e.target.value)} placeholder="Digite o nome completo" required />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">CEP</label>
+          <input className="form-input" value={cep} onChange={e => setCep(e.target.value)} onBlur={handleCepBlur} placeholder="00000-000" required />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">Email</label>
+          <input className="form-input" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email@exemplo.com" required />
+        </div>
+
+        <div className="address-row">
           <div className="form-row">
-            <label className="form-label" htmlFor="nome">Nome Completo</label>
-            <input
-              className="forminput"
-              id="nome"
-              name="nome"
-              data-testid="nome"
-              type="text"
-              placeholder="Digite o nome completo"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-            />
+            <label className="form-label">Logradouro</label>
+            <input className="form-input" value={endereco} disabled />
           </div>
 
           <div className="form-row">
-            <label className="form-label" htmlFor="cep">CEP</label>
-            <input
-              className="form-input"
-              id="cep"
-              name="cep"
-              data-testid="cep"
-              type="text"
-              placeholder="00000-000"
-              value={cep}
-              onChange={(e) => setCep(e.target.value)}
-              onBlur={handleCepBlur}
-              required
-            />
+            <label className="form-label">Bairro</label>
+            <input className="form-input" value={bairro} disabled />
           </div>
 
           <div className="form-row">
-            <label className="form-label" htmlFor="email">Email Corporativo</label>
-            <input
-              className="form-input"
-              id="email"
-              name="email"
-              data-testid="email"
-              type="email"
-              placeholder="email@exemplo.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <label className="form-label">Cidade</label>
+            <input className="form-input" value={cidade} disabled />
           </div>
+        </div>
 
-          <div className="address-row">
-            <div className="form-row">
-              <label className="form-label" htmlFor="endereco">Logradouro</label>
-              <input disabled
-                className="form-input"
-                id="endereco"
-                name="endereco"
-                data-testid="endereco"
-                type="text"
-                placeholder="Rua, Av, etc."
-                value={endereco}
-                onChange={(e) => setEndereco(e.target.value)}
-              />
-            </div>
+        <div className="form-row full">
+          <label className="form-label">Complemento</label>
+          <input className="form-input" value={complemento} onChange={e => setComplemento(e.target.value)} placeholder="Apto, Bloco, etc." />
+        </div>
 
-            <div className="form-row">
-              <label className="form-label" htmlFor="bairro">Bairro</label>
-              <input disabled
-                className="form-input"
-                id="bairro"
-                name="bairro"
-                data-testid="bairro"
-                type="text"
-                placeholder="Ex: Centro"
-                value={bairro}
-                onChange={(e) => setBairro(e.target.value)}
-              />
-            </div>
+        <div className="button-group form-grid-full-width">
+          <button id="voltar" type="button" className="button" onClick={handleVoltar}>
+            Voltar
+          </button>
+          <button id="confirmar" type="submit" className="button">
+            Cadastrar
+          </button>
+        </div>
+      </form>
 
-            <div className="form-row">
-              <label className="form-label" htmlFor="cidade">Cidade</label>
-              <input disabled
-                className="form-input"
-                id="cidade"
-                name="cidade"
-                data-testid="cidade"
-                type="text"
-                placeholder="Ex: São Paulo"
-                value={cidade}
-                onChange={(e) => setCidade(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <div className="form-row form-grid-full-width">
-            <label className="form-label" htmlFor="complemento">Complemento</label>
-            <input
-              className="form-input"
-              id="complemento"
-              name="complemento"
-              data-testid="complemento"
-              type="text"
-              placeholder="Apto, Bloco, Travessa, etc."
-              value={complemento}
-              onChange={(e) => setComplemento(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="button-group form-grid-full-width">
-            <button id="voltar" type="button" className="button" onClick={handleVoltar}>
-              Voltar
-            </button>
-            <button id="confirmar" type="submit" className="button">
-              Cadastrar
-            </button>
-          </div>
-        </form>
-
-        {mensagem && (
-          <div className={`mensagem-feedback ${mensagem.toLowerCase().includes('erro') ? 'error' : 'success'}`} data-testid="mensagem">
-            {mensagem}
-          </div>
-        )}
-      </div>
+      {mensagem && (
+        <div className={`mensagem ${mensagem.includes("Erro") ? "error" : "success"}`}>
+          {mensagem}
+        </div>
+      )}
     </div>
   );
 };
 
 export default ClienteCadastrarView;
-

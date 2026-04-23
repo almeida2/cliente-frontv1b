@@ -3,12 +3,12 @@
 /* define a url base, centraliza a configuracao do endpoint                */
 /* logica de validacao e tratamento de erros                               */
 /************************************************************************* */
-const API_BASE_URL = "https://cliente-backv2-a51a1eaa05cd.herokuapp.com/api/v1/clientes";
+const API_BASE_URL = "http://localhost:8080/api/v1/clientes";
 
 const ClienteService = {
   buscarEnderecoPorCep: async (cep) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/${cep}`);
+      const response = await fetch(`${API_BASE_URL}/cep/${cep}`);
 
       if (!response.ok) {
         const errorData = await response.text();

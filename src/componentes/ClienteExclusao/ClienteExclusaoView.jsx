@@ -2,7 +2,7 @@ import React from "react";
 
 import { useNavigate } from "react-router-dom";
 
-// Remova a importação do Container, pois não é necessária aqui
+
 function ClienteExclusaoView({ cpf, setCpf, loading, mensagem, onSubmit }) {
   const navigate = useNavigate();
   const handleBackToMenu = () => {
@@ -12,7 +12,7 @@ function ClienteExclusaoView({ cpf, setCpf, loading, mensagem, onSubmit }) {
   return (
     <>
       <div className="top-bar">Sistema Integrado de Gestão</div>
-     
+
       <div className="form-container">
         <h2>Excluir Cliente</h2>
         <form onSubmit={onSubmit} style={{ maxWidth: 420 }}>
@@ -37,17 +37,17 @@ function ClienteExclusaoView({ cpf, setCpf, loading, mensagem, onSubmit }) {
             </div>
           </div>
           <div className="button-group">
-            
-          <div style={{ display: "flex", gap: 8 }}>
-            <button type="submit" className="button" data-testid="excluir-cliente-button" >
+
+            <div style={{ display: "flex", gap: 8 }}>
+              <button type="submit" className="button" data-testid="excluir-cliente-button" >
                 Excluir
-            </button>
-            <button type="button" className="button" onClick={handleBackToMenu} data-testid="excluir-voltar-button" disabled={loading}>
-              Voltar
-            </button>
+              </button>
+              <button type="button" className="button" onClick={handleBackToMenu} data-testid="excluir-voltar-button" disabled={loading}>
+                Voltar
+              </button>
+            </div>
           </div>
-          </div>
-           {mensagem && (
+          {mensagem && (
             <div
               role="status"
               style={{
@@ -61,7 +61,7 @@ function ClienteExclusaoView({ cpf, setCpf, loading, mensagem, onSubmit }) {
               {mensagem.texto}
             </div>
           )}
-          
+
         </form>
       </div>
     </>

@@ -1,7 +1,7 @@
 //Objetivo: buscar todos os clientes cadastrados no banco de dados
 
 async function ClienteConsultar() {
-  const API_URL = "https://cliente-backv2-a51a1eaa05cd.herokuapp.com/api/v1/clientes/all";
+  const API_URL = "http://localhost:8080/api/v1/clientes/all";
 
   try {
     const response = await fetch(API_URL);

@@ -1,7 +1,7 @@
 const ClienteExclusaoService = {
   excluir: async (cpf) => {
     try {
-      const resp = await fetch(`https://cliente-backv2-a51a1eaa05cd.herokuapp.com/api/v1/clientes/${cpf}`, {
+      const resp = await fetch(`http://localhost:8080/api/v1/clientes/${cpf}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

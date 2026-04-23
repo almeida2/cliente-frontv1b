@@ -33,7 +33,6 @@ const ClienteConsultaCpfContainer = () => {
         return;
       }
 
-      // o backend aqui retorna obj com status/message/data conforme seu exemplo anterior
       if (result.data?.status === "success") {
         setCliente(result.data.data);
         setMensagem(result.data.message || "");
@@ -46,7 +45,7 @@ const ClienteConsultaCpfContainer = () => {
   };
 
   const handleVoltar = () => {
-    // navegar para a home; se preferir apenas limpar, use reset de estado
+    // navegar para a home
     navigate("/");
   };
 
