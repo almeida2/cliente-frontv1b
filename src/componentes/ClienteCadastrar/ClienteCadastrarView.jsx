@@ -74,7 +74,7 @@ const ClienteCadastrarView = ({
           </div>
         </div>
 
-        <div className="button-group form-grid-full-width">
+        <div className="button-group">
           <button id="voltar" type="button" className="button" onClick={handleVoltar}>
             Voltar
           </button>
