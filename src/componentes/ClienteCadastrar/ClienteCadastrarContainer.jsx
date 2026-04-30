@@ -25,7 +25,7 @@ const ClienteCadastrarContainer = () => {
   const [cidade, setCidade] = useState("");
   const [complemento, setComplemento] = useState("");
   const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
+  const [mensagem, setMensagem] = useState(null);
 
   const handleVoltar = () => {
     navigate("/");
@@ -48,14 +48,23 @@ const ClienteCadastrarContainer = () => {
       const result = await ClienteService.cadastrar(clienteData);
 
       if (result.data) {
-        setMensagem("Cliente cadastrado com sucesso");
+        setMensagem({ texto: "Cliente cadastrado com sucesso", tipo: "sucesso" });
         console.log(result.data);
       } else {
-        console.log(`Erro: ${result.error}`);
-        setMensagem(`Erro: ${result.error}`);
+        let textoErro = result.error;
+        try {
+          const parsed = JSON.parse(result.error);
+          if (parsed.message) {
+            textoErro = parsed.message;
+          }
+        } catch (e) {
+          // Mantém a string original se não for um JSON válido
+        }
+        console.log(`Erro: ${textoErro}`);
+        setMensagem({ texto: textoErro, tipo: "erro" });
       }
     } catch (error) {
-      setMensagem(`Erro não esperado: ${error.message}`);
+      setMensagem({ texto: `Erro não esperado: ${error.message}`, tipo: "erro" });
     }
   };
 

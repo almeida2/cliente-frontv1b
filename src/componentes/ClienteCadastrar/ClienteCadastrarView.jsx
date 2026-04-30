@@ -84,9 +84,9 @@ const ClienteCadastrarView = ({
         </div>
       </form>
 
-      {mensagem && (
-        <div className={`mensagem ${mensagem.includes("Erro") ? "error" : "success"}`}>
-          {mensagem}
+      {mensagem && mensagem.texto && (
+        <div className={`mensagem ${mensagem.tipo === "erro" ? "error" : "success"}`}>
+          {mensagem.texto}
         </div>
       )}
     </div>
